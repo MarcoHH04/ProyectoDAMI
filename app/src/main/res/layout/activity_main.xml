@@ -49,7 +49,7 @@
                 android:text="Bienvenido a GoodFood"
                 android:layout_marginTop="16dp"
                 android:textColor="#E64A19"
-                android:textSize="22sp" />
+                android:textSize="24dp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilCorreo"
@@ -71,7 +71,8 @@
                     android:autofillHints="emailAddress"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    android:importantForAutofill="yes"/>
+                    android:importantForAutofill="yes"
+                    app:suffixText="\@gmail.com.pe"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
