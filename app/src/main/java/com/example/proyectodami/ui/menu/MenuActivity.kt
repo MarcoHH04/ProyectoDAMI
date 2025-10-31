@@ -1,4 +1,4 @@
-package com.example.proyectodami
+package com.example.proyectodami.ui.menu
 
 import android.os.Bundle
 import android.widget.Button
@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import android.widget.ImageView
+import com.example.proyectodami.R
 
 class MenuActivity : AppCompatActivity() {
 
@@ -17,7 +18,7 @@ class MenuActivity : AppCompatActivity() {
 
         val contenedorPlatos = findViewById<LinearLayout>(R.id.contenedorPlatos)
 
-        // 🔸 Datos simulados (por ahora)
+        // Datos simulados (por ahora)
         val listaPlatos = listOf(
             Plato("Lomo Saltado", "Clásico plato peruano con carne, papas y arroz.", "S/ 25.00", R.drawable.ic_launcher_background),
             Plato("Ceviche", "Pescado fresco marinado en limón.", "S/ 22.00", R.drawable.ic_launcher_background),
@@ -25,7 +26,6 @@ class MenuActivity : AppCompatActivity() {
             Plato("Tallarines Verdes", "Pasta con salsa de albahaca y queso.", "S/ 18.00", R.drawable.ic_launcher_background)
         )
 
-        // 🔹 Crear dinámicamente las tarjetas de cada plato
         for (plato in listaPlatos) {
             val cardView = layoutInflater.inflate(R.layout.item_plato, contenedorPlatos, false) as CardView
 

@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#FFF8E1"
-    tools:context=".MainActivity">
+    tools:context=".ui.login.MainActivity">
 
     <ScrollView
         android:layout_width="0dp"

@@ -1,9 +1,11 @@
-package com.example.proyectodami
+package com.example.proyectodami.data.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.proyectodami.data.dao.UsuarioDao
+import com.example.proyectodami.data.entities.Usuario
 
 @Database(entities = [Usuario::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {

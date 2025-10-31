@@ -1,13 +1,14 @@
-package com.example.proyectodami
+package com.example.proyectodami.data.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.proyectodami.data.entities.Usuario
 
 @Dao
 interface UsuarioDao {
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.Companion.ABORT)
     suspend fun registrarUsuario(usuario: Usuario)
 
     @Query("SELECT * FROM usuarios WHERE correo = :correo AND contrasena = :contrasena LIMIT 1")

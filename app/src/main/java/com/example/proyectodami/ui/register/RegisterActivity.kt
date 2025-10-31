@@ -1,9 +1,14 @@
-package com.example.proyectodami
+package com.example.proyectodami.ui.register
 
 import android.os.Bundle
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.proyectodami.R
+import com.example.proyectodami.data.database.AppDatabase
+import com.example.proyectodami.data.entities.Usuario
 import kotlinx.coroutines.launch
 
 class RegisterActivity : AppCompatActivity() {
@@ -13,7 +18,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        db = AppDatabase.getDatabase(this)
+        db = AppDatabase.Companion.getDatabase(this)
 
         val btnRegistrar = findViewById<Button>(R.id.btnRegistrar)
         val tietNombre = findViewById<EditText>(R.id.tietNombre)

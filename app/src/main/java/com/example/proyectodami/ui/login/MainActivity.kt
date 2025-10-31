@@ -1,4 +1,4 @@
-package com.example.proyectodami
+package com.example.proyectodami.ui.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
+import com.example.proyectodami.ui.home.HomeActivity
+import com.example.proyectodami.R
+import com.example.proyectodami.ui.register.RegisterActivity
+import com.example.proyectodami.data.database.AppDatabase
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -26,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val tvRegistro = findViewById<TextView>(R.id.tvRegistro)
-        val db = AppDatabase.getDatabase(this)
+        val db = AppDatabase.Companion.getDatabase(this)
         val btnLogin = findViewById<Button>(R.id.btnLogin)
         val tietCorreo = findViewById<EditText>(R.id.tietCorreo)
         val tietClave = findViewById<EditText>(R.id.tietClave)

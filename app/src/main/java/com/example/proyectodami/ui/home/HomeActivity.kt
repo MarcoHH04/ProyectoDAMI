@@ -1,11 +1,13 @@
-package com.example.proyectodami
+package com.example.proyectodami.ui.home
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.example.proyectodami.ui.menu.MenuActivity
+import com.example.proyectodami.R
 
 class HomeActivity : AppCompatActivity() {
 

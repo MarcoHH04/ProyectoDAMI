@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#FFF8E1"
     android:padding="24dp"
-    tools:context=".RegisterActivity">
+    tools:context=".ui.register.RegisterActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

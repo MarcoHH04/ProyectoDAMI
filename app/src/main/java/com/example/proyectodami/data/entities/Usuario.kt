@@ -1,4 +1,4 @@
-package com.example.proyectodami
+package com.example.proyectodami.data.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

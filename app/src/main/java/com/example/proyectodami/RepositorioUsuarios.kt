@@ -1,5 +1,7 @@
 package com.example.proyectodami
 
+import com.example.proyectodami.data.entities.Usuario
+
 object RepositorioUsuarios {
     val listaUsuarios = mutableListOf<Usuario>()
 
