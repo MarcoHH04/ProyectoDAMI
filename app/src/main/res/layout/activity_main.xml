@@ -33,13 +33,15 @@
                     android:id="@+id/food"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
+                    android:adjustViewBounds="true"
                     app:layout_constraintDimensionRatio="4:3"
-                    app:layout_constraintStart_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:lottie_autoPlay="true"
                     app:lottie_loop="true"
                     app:lottie_rawRes="@raw/login" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
             <TextView
@@ -49,7 +51,7 @@
                 android:text="Bienvenido a GoodFood"
                 android:layout_marginTop="16dp"
                 android:textColor="#E64A19"
-                android:textSize="24dp" />
+                android:textSize="24sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilCorreo"
