@@ -53,11 +53,11 @@
                 android:id="@+id/btnPlatos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="#FF7043"
                 android:text="Platos principales"
+                android:backgroundTint="#FF7043"
+                android:textColor="#FFFFFF"
                 android:textAllCaps="false"
-                android:textColor="#FFFFFF" />
+                android:layout_marginEnd="8dp"/>
 
             <Button
                 android:id="@+id/btnPostres"
@@ -95,7 +95,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="8dp">
-        </LinearLayout>
+            android:padding="8dp"/>
     </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabCarrito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:contentDescription="Ir al carrito"
+        app:srcCompat="@drawable/ic_carrito"
+        app:backgroundTint="#FF7043"
+        app:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

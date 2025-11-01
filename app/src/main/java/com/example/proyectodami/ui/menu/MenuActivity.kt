@@ -1,5 +1,6 @@
 package com.example.proyectodami.ui.menu
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -12,6 +13,8 @@ import com.example.proyectodami.R
 import com.example.proyectodami.data.database.AppDatabase
 import com.example.proyectodami.data.database.DatabaseInitializer
 import com.example.proyectodami.data.entity.Producto
+import com.example.proyectodami.ui.carrito.CarritoActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -28,6 +31,18 @@ class MenuActivity : AppCompatActivity() {
 
         val db = AppDatabase.getDatabase(this)
         val productoDao = db.productoDao()
+
+        val fabCarrito = findViewById<FloatingActionButton>(R.id.fabCarrito)
+        fabCarrito.setOnClickListener {
+            val intent = Intent(this, CarritoActivity::class.java)
+            startActivity(intent)
+        }
+
+        //limpiar el carrito cada vez que se abre el menú
+        CoroutineScope(Dispatchers.IO).launch {
+            AppDatabase.getDatabase(this@MenuActivity).carritoDao().vaciarCarrito()
+        }
+        // hasta aqui seria el codigo que borra el carrito
 
         DatabaseInitializer.llenarDatosIniciales(this)
 
@@ -57,7 +72,34 @@ class MenuActivity : AppCompatActivity() {
             imgPlato.setImageResource(producto.imagen)
 
             btnAgregar.setOnClickListener {
-                Toast.makeText(this, "${producto.nombre} agregado al carrito", Toast.LENGTH_SHORT).show()
+                CoroutineScope(Dispatchers.IO).launch {
+                    val carritoDao = AppDatabase.getDatabase(this@MenuActivity).carritoDao()
+
+                    val carritoActual = carritoDao.obtenerCarrito()
+                    val itemExistente = carritoActual.find { it.productoId == producto.id }
+
+                    if (itemExistente != null) {
+                        val actualizado = itemExistente.copy(cantidad = itemExistente.cantidad + 1)
+                        carritoDao.actualizarItem(actualizado)
+                    } else {
+                        val nuevoItem = com.example.proyectodami.data.entity.CarritoItem(
+                            productoId = producto.id,
+                            nombre = producto.nombre,
+                            precio = producto.precio,
+                            cantidad = 1,
+                            imagen = producto.imagen // 👈 agregado
+                        )
+                        carritoDao.agregarAlCarrito(nuevoItem)
+                    }
+
+                    runOnUiThread {
+                        Toast.makeText(
+                            this@MenuActivity,
+                            "${producto.nombre} agregado al carrito",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
             }
 
             contenedorPlatos.addView(cardView)

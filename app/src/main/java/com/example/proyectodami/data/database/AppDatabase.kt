@@ -4,19 +4,22 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.proyectodami.data.dao.CarritoDao
 import com.example.proyectodami.data.dao.ProductoDao
 import com.example.proyectodami.data.dao.UsuarioDao
+import com.example.proyectodami.data.entity.CarritoItem
 import com.example.proyectodami.data.entity.Producto
 import com.example.proyectodami.data.entity.Usuario
 
-@Database(entities = [Usuario::class, Producto::class],
-    version = 2,
+@Database(entities = [Usuario::class, Producto::class, CarritoItem::class],
+    version = 3,
     exportSchema = false)
 
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun usuarioDao(): UsuarioDao
     abstract fun productoDao(): ProductoDao
+    abstract fun carritoDao(): CarritoDao
 
     companion object {
         @Volatile
