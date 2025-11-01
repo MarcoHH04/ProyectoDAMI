@@ -11,10 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
-import com.example.proyectodami.ui.home.HomeActivity
 import com.example.proyectodami.R
-import com.example.proyectodami.ui.register.RegisterActivity
 import com.example.proyectodami.data.database.AppDatabase
+import com.example.proyectodami.ui.home.HomeActivity
+import com.example.proyectodami.ui.register.RegisterActivity
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -30,14 +30,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         val tvRegistro = findViewById<TextView>(R.id.tvRegistro)
-        val db = AppDatabase.Companion.getDatabase(this)
         val btnLogin = findViewById<Button>(R.id.btnLogin)
         val tietCorreo = findViewById<EditText>(R.id.tietCorreo)
         val tietClave = findViewById<EditText>(R.id.tietClave)
 
         tvRegistro.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
 
         btnLogin.setOnClickListener {
@@ -50,23 +48,37 @@ class MainActivity : AppCompatActivity() {
             }
 
             lifecycleScope.launch {
-                val usuario = db.usuarioDao().validarLogin(correo, clave)
-                runOnUiThread {
-                    if (usuario != null) {
+                try {
+                    val db = AppDatabase.getDatabase(this@MainActivity)
+                    val usuario = db.usuarioDao().validarLogin(correo, clave)
+
+                    runOnUiThread {
+                        if (usuario != null) {
+                            Toast.makeText(
+                                this@MainActivity,
+                                "Bienvenido ${usuario.nombre}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+
+                            val intent = Intent(this@MainActivity, HomeActivity::class.java)
+                            intent.putExtra("nombreUsuario", usuario.nombre)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            Toast.makeText(
+                                this@MainActivity,
+                                "Correo o contraseña incorrectos",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    runOnUiThread {
                         Toast.makeText(
                             this@MainActivity,
-                            "Bienvenido ${usuario.nombre}",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        val intent = Intent(this@MainActivity, HomeActivity::class.java)
-                        intent.putExtra("nombreUsuario", usuario.nombre)
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        Toast.makeText(
-                            this@MainActivity,
-                            "Correo o contraseña incorrectos",
-                            Toast.LENGTH_SHORT
+                            "Error: ${e.message}",
+                            Toast.LENGTH_LONG
                         ).show()
                     }
                 }

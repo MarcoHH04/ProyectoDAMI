@@ -9,7 +9,6 @@
     android:background="#FFF8E1"
     tools:context=".ui.menu.MenuActivity">
 
-    <!-- Título -->
     <TextView
         android:id="@+id/tvTituloMenu"
         android:layout_width="wrap_content"
@@ -23,7 +22,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"/>
 
-    <!-- Categorías -->
     <HorizontalScrollView
         android:id="@+id/categoriasScroll"
         android:layout_width="0dp"
@@ -82,7 +80,6 @@
         </LinearLayout>
     </HorizontalScrollView>
 
-    <!-- Lista de platos -->
     <ScrollView
         android:id="@+id/contenedorScroll"
         android:layout_width="0dp"
@@ -99,8 +96,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="8dp">
-
-
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,7 +10,6 @@
     android:padding="16dp"
     tools:context=".ui.home.HomeActivity">
 
-    <!-- Texto de bienvenida -->
     <TextView
         android:id="@+id/tvBienvenida"
         android:layout_width="wrap_content"
@@ -24,7 +23,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="32dp" />
 
-    <!-- Animación Lottie (igual que en login) -->
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/food_home"
         android:layout_width="0dp"
@@ -38,7 +36,6 @@
         app:lottie_rawRes="@raw/login"
         android:contentDescription="Animación de comida" />
 
-    <!-- Botones de navegación -->
     <LinearLayout
         android:id="@+id/contenedorBotones"
         android:layout_width="0dp"
@@ -91,5 +88,4 @@
             android:layout_marginVertical="8dp" />
 
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

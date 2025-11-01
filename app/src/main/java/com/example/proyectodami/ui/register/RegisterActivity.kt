@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.proyectodami.R
 import com.example.proyectodami.data.database.AppDatabase
-import com.example.proyectodami.data.entities.Usuario
+import com.example.proyectodami.data.entity.Usuario
 import kotlinx.coroutines.launch
 
 class RegisterActivity : AppCompatActivity() {

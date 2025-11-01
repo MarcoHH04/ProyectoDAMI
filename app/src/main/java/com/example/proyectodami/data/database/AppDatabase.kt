@@ -4,12 +4,19 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.proyectodami.data.dao.ProductoDao
 import com.example.proyectodami.data.dao.UsuarioDao
-import com.example.proyectodami.data.entities.Usuario
+import com.example.proyectodami.data.entity.Producto
+import com.example.proyectodami.data.entity.Usuario
 
-@Database(entities = [Usuario::class], version = 1)
+@Database(entities = [Usuario::class, Producto::class],
+    version = 2,
+    exportSchema = false)
+
 abstract class AppDatabase : RoomDatabase() {
+
     abstract fun usuarioDao(): UsuarioDao
+    abstract fun productoDao(): ProductoDao
 
     companion object {
         @Volatile
@@ -21,7 +28,8 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "goodfood_db"
-                ).build()
+                ).fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 instance
             }
