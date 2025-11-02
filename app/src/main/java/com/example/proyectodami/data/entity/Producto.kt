@@ -11,5 +11,5 @@ data class Producto(
     val descripcion: String,
     val precio: Double,
     val categoria: String,
-    val imagen: Int
+    val imagen: String
 )

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#FFF3E0">
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/ic_check"
+        android:contentDescription="Compra confirmada"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:id="@+id/tvMensajeConfirmacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¡Gracias por tu compra!"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:layout_marginBottom="40dp" />
+
+    <Button
+        android:id="@+id/btnVolverHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Volver al inicio"
+        android:backgroundTint="#FF7043"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:padding="10dp" />
+</LinearLayout>

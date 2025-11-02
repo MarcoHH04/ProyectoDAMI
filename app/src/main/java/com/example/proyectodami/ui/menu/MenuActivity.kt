@@ -38,12 +38,12 @@ class MenuActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        //limpiar el carrito cada vez que se abre el menú
+        // 🔹 Limpiar carrito cada vez que se abre el menú (solo en pruebas)
         CoroutineScope(Dispatchers.IO).launch {
             AppDatabase.getDatabase(this@MenuActivity).carritoDao().vaciarCarrito()
         }
-        // hasta aqui seria el codigo que borra el carrito
 
+        // 🔹 Llenar productos iniciales si no existen
         DatabaseInitializer.llenarDatosIniciales(this)
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -69,12 +69,18 @@ class MenuActivity : AppCompatActivity() {
             tvNombre.text = producto.nombre
             tvDescripcion.text = producto.descripcion
             tvPrecio.text = "S/ %.2f".format(producto.precio)
-            imgPlato.setImageResource(producto.imagen)
+
+            // 🔹 Buscar imagen por nombre
+            val resId = resources.getIdentifier(producto.imagen, "drawable", packageName)
+            if (resId != 0) {
+                imgPlato.setImageResource(resId)
+            } else {
+                imgPlato.setImageResource(R.drawable.ic_placeholder) // imagen de respaldo
+            }
 
             btnAgregar.setOnClickListener {
                 CoroutineScope(Dispatchers.IO).launch {
                     val carritoDao = AppDatabase.getDatabase(this@MenuActivity).carritoDao()
-
                     val carritoActual = carritoDao.obtenerCarrito()
                     val itemExistente = carritoActual.find { it.productoId == producto.id }
 
@@ -87,7 +93,7 @@ class MenuActivity : AppCompatActivity() {
                             nombre = producto.nombre,
                             precio = producto.precio,
                             cantidad = 1,
-                            imagen = producto.imagen // 👈 agregado
+                            imagen = producto.imagen // ahora String
                         )
                         carritoDao.agregarAlCarrito(nuevoItem)
                     }

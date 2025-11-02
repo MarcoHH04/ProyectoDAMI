@@ -11,5 +11,5 @@ data class CarritoItem(
     val nombre: String,
     val precio: Double,
     val cantidad: Int,
-    val imagen: Int
+    val imagen: String
 )

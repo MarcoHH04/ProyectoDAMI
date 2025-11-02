@@ -12,7 +12,7 @@ import com.example.proyectodami.data.entity.Producto
 import com.example.proyectodami.data.entity.Usuario
 
 @Database(entities = [Usuario::class, Producto::class, CarritoItem::class],
-    version = 3,
+    version = 4,
     exportSchema = false)
 
 abstract class AppDatabase : RoomDatabase() {

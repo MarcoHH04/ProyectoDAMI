@@ -1,5 +1,6 @@
 package com.example.proyectodami.ui.carrito
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +8,7 @@ import androidx.cardview.widget.CardView
 import com.example.proyectodami.R
 import com.example.proyectodami.data.database.AppDatabase
 import com.example.proyectodami.data.entity.CarritoItem
+import com.example.proyectodami.ui.pago.PagoActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -32,7 +34,6 @@ class CarritoActivity : AppCompatActivity() {
 
         cargarCarrito()
 
-        // Vaciar carrito
         btnVaciar.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
                 carritoDao.vaciarCarrito()
@@ -43,17 +44,13 @@ class CarritoActivity : AppCompatActivity() {
             }
         }
 
-        // Confirmar pedido
         btnConfirmar.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
-                carritoDao.vaciarCarrito()
+                val total = carritoDao.obtenerTotal() ?: 0.0
                 runOnUiThread {
-                    Toast.makeText(
-                        this@CarritoActivity,
-                        "Pedido confirmado correctamente",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    cargarCarrito()
+                    val intent = Intent(this@CarritoActivity, PagoActivity::class.java)
+                    intent.putExtra("total_pedido", total)
+                    startActivity(intent)
                 }
             }
         }
@@ -95,11 +92,14 @@ class CarritoActivity : AppCompatActivity() {
                         tvPrecio.text = "S/ %.2f".format(item.precio)
                         tvCantidad.text = item.cantidad.toString()
 
-                        // Imagen con fallback
-                        val resId = if (item.imagen != 0) item.imagen else R.drawable.ic_launcher_background
-                        img.setImageResource(resId)
+                        // 🔹 Nuevo método para obtener imagen desde el nombre (String)
+                        val resId = resources.getIdentifier(item.imagen, "drawable", packageName)
+                        if (resId != 0) {
+                            img.setImageResource(resId)
+                        } else {
+                            img.setImageResource(R.drawable.ic_placeholder) // una imagen genérica
+                        }
 
-                        // Botones funcionales
                         btnMas.setOnClickListener {
                             actualizarCantidad(item, item.cantidad + 1)
                         }
