@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.proyectodami.PerfilActivity
 import com.example.proyectodami.ui.menu.MenuActivity
 import com.example.proyectodami.R
+import com.example.proyectodami.ReservaActivity
 import com.example.proyectodami.data.database.DatabaseInitializer
 
 class HomeActivity : AppCompatActivity() {
@@ -44,7 +45,8 @@ class HomeActivity : AppCompatActivity() {
         }
 
         btnReservas.setOnClickListener {
-            Toast.makeText(this, "Abrir reservas", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, ReservaActivity::class.java)
+            startActivity(intent)
         }
     }
 }

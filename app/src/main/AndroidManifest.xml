@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoDAMI">
         <activity
+            android:name=".ListareservaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ReservaActivity"
+            android:exported="false" />
+        <activity
             android:name=".PerfilActivity"
             android:exported="false" />
         <activity android:name=".ui.home.HomeActivity" />
