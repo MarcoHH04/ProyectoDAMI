@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.proyectodami.PerfilActivity
 import com.example.proyectodami.ui.menu.MenuActivity
 import com.example.proyectodami.R
 import com.example.proyectodami.data.database.DatabaseInitializer
@@ -19,7 +20,7 @@ class HomeActivity : AppCompatActivity() {
         DatabaseInitializer.llenarDatosIniciales(this)
 
         val btnMenu = findViewById<Button>(R.id.btnMenu)
-        val btnCarrito = findViewById<Button>(R.id.btnCarrito)
+        //val btnCarrito = findViewById<Button>(R.id.btnCarrito)
         val btnPerfil = findViewById<Button>(R.id.btnPerfil)
         val btnReservas = findViewById<Button>(R.id.btnReservas)
         val tvBienvenida = findViewById<TextView>(R.id.tvBienvenida)
@@ -33,12 +34,13 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        btnCarrito.setOnClickListener {
-            Toast.makeText(this, "Abrir carrito", Toast.LENGTH_SHORT).show()
-        }
+       // btnCarrito.setOnClickListener {
+       //     Toast.makeText(this, "Abrir carrito", Toast.LENGTH_SHORT).show()
+       //  }
 
         btnPerfil.setOnClickListener {
-            Toast.makeText(this, "Abrir perfil", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, PerfilActivity::class.java)
+            startActivity(intent)
         }
 
         btnReservas.setOnClickListener {
